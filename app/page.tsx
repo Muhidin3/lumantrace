@@ -21,7 +21,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<ScanResponse | null>(null);
-
+  const [typeOfLink,SetTypeOfLink] = useState('')
   const riskLabel = useMemo(() => {
     if (!result?.stats) {
       return "No scan yet";
@@ -35,8 +35,42 @@ export default function Home() {
       return "Suspicious";
     }
 
-    return "Likely safe";
+    return "Safe";
   }, [result]);
+
+  /**
+ * A list of common link shortener domains.
+ * You can easily expand this list as needed.
+ */
+const SHORTENER_DOMAINS: string[] = [
+  'bit.ly',
+  'tinyurl.com',
+  't.co',
+  'rebrand.ly',
+  'short.io',
+  'dub.sh',
+  'bl.ink',
+  'is.gd',
+  'buff.ly',
+  'goo.gl',
+];
+
+
+function checkLinkShortener(urlString: string): string {
+  try {
+    const url = new URL(urlString);
+    // Remove 'www.' if present to ensure a clean match
+    const hostname = url.hostname.replace(/^www\./, '');
+
+    if (SHORTENER_DOMAINS.includes(hostname)) {
+      return (`The link is shortened`);
+    } else {
+      return (``);
+    }
+  } catch{
+    return ("Invalid URL provided:");
+  }
+}
 
   const summaryTone = useMemo(() => {
     if (!result?.stats) {
@@ -76,6 +110,7 @@ export default function Home() {
       }
 
       setResult(data as ScanResponse);
+      SetTypeOfLink(checkLinkShortener(url))
     } catch (submissionError) {
       setError(
         submissionError instanceof Error
@@ -190,7 +225,7 @@ export default function Home() {
                       Undetected: {result.stats.undetected ?? 0}
                     </div>
                   </div>
-                  <p className="mt-3 text-xs text-(--muted)">Analysis ID: {result.analysisId}</p>
+                  <p className="mt-3 text-xs text-(--muted)">{typeOfLink}</p>
                 </div>
               </>
             )}
