@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FormEvent, useMemo, useState } from "react";
 
 type ScanStats = {
@@ -99,6 +100,18 @@ export default function Home() {
           <p className="mx-auto max-w-2xl text-sm leading-7 text-(--muted) sm:text-base">
             Paste any URL to check if it could be spam, phishing, or malware.
           </p>
+          <div className="mx-auto mt-2 flex w-fit items-center gap-3 rounded-full border border-(--line) bg-(--chip) px-3 py-2">
+            <Image
+              src="/logo.jpg"
+              alt="Lumen Labs logo"
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-full object-cover"
+            />
+            <p className="text-xs font-medium tracking-[0.14em] text-(--muted) uppercase">
+              Made by Lumen Labs
+            </p>
+          </div>
         </header>
 
         <form className="space-y-4" onSubmit={onSubmit}>
