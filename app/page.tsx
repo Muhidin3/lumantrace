@@ -143,7 +143,7 @@ export default function Home() {
           <section className="rounded-2xl border border-(--line) bg-(--chip) p-6 text-center sm:p-8">
             <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-(--muted) border-t-transparent" />
             <p className="text-sm font-medium text-(--ink)">Scanning URL...</p>
-            <p className="mt-1 text-xs text-(--muted)">Please wait while VirusTotal prepares the result.</p>
+            <p className="mt-1 text-xs text-(--muted)">Please wait while preparing the result.</p>
           </section>
         )}
 
