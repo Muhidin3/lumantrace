@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6efe4;
+  --foreground: #0f1a2a;
+  --cream: #f6efe4;
+  --ink: #0f1a2a;
+  --panel: rgba(246, 239, 228, 0.88);
+  --chip: rgba(15, 26, 42, 0.04);
+  --line: rgba(15, 26, 42, 0.2);
+  --muted: #415368;
+  --accent: #10253c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 14% 14%, rgba(16, 37, 60, 0.1), transparent 36%),
+    radial-gradient(circle at 82% 10%, rgba(16, 37, 60, 0.12), transparent 42%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+}
